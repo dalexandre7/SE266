@@ -7,12 +7,12 @@
  <ul>
 
 
-    <li><a href="../week1d/index.php">Basic PHP and Arrays</a></li>
-    <li><a href="../week1d/index.php">Associative Arrays</a></li>
-    <li><a href="../week1e/index.php">Booleans and Conditional </a></li>
-    <li><a href="../week1f/index.php">Functions</a></li>
-    <li><a href="../weekfizzbuzz/index.php">Fizz Buzz</a></li>
-    <li><a href="../week7/index.php">Week 7</a></li>
+    <li><a href="/week1/c/Basic.php">Arrays</a></li> 
+    <li><a href="/week1/c//index.php">Associative Arrays</a></li>
+    <li><a href="../week1/c/index.php">Booleans and Conditional </a></li>
+    <li><a href="../week1/c/index.php">Functions</a></li>
+    <li><a href="../week1/fizzBuzz/index.php">Fizz Buzz</a></li>
+    <li><a href="../week3/index.php">Week 3</a></li>
     <li><a href="../week8/index.php">Week 8</a></li>
     <li><a href="../week9/index.php">Week 9</a></li>
     <li><a href="../week10/index.php">Week 10</a></li>
