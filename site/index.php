@@ -5,8 +5,6 @@
  </p>
  <h2>Assignment Overview</h2>
  <ul>
-
-
     <li><a href="/week1/c/Basic.php">Arrays</a></li> 
     <li><a href="/week1/c//index.php">Associative Arrays</a></li>
     <li><a href="../week1/c/index.php">Booleans and Conditional </a></li>
