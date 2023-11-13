@@ -1,36 +1,46 @@
 
 <?php
+require_once "./account.php"; 
+require_once "./checking.php";
+require_once "./savings.php"; 
+
+
+
 
 if(isset($_POST["checkingBalance"])){
-   $checkingBalance  = filterinput(INPUT_POST, "checkingBalance")
-   $savingsBalance  = filterinput(INPUT_POST, "savingsBalance")
+   $checkingBalance  = filter_input(INPUT_POST, "checkingBalance");
+   $savingsBalance  = filter_input(INPUT_POST, "savingBalance");
 }
 else{
     $checkingBalance = 1000; 
-    $savingBalance = 5000; 
+    $savingsBalance = 5000; 
 }
 
 $checking = new CheckingAccount ('C123', $checkingBalance, '12-20-2019');
-$savings = new SavingsAccount('S123', $savingBalance, '03-20-2020');
+$savings = new SavingsAccount('S123', $savingsBalance, '03-20-2020');
 
 
 
 
     if (isset ($_POST['withdrawChecking'])) 
     {
-        echo "I pressed the checking withdrawal button";
+        $chewith = filter_input(INPUT_POST, "checkingWithdrawAmount");
+        $checking -> withdrawal($chewith);
     } 
     else if (isset ($_POST['depositChecking'])) 
     {
-        echo "I pressed the checking deposit button";
+        $chedep =  filter_input(INPUT_POST, "checkingDepositAmount");
+        $checking -> deposit($chedep);
     } 
     else if (isset ($_POST['withdrawSavings'])) 
     {
-        echo "I pressed the savings withdrawal button";
+        $with =  filter_input(INPUT_POST, "savingsWithdrawAmount");
+        $savings -> withdrawal($with);
     } 
     else if (isset ($_POST['depositSavings'])) 
     {
-        echo "I pressed the savings deposit button";
+        $saveDep =  filter_input(INPUT_POST, "savingsDepositAmount");
+        $savings -> deposit($saveDep);
     } 
      
 ?>
@@ -77,7 +87,10 @@ $savings = new SavingsAccount('S123', $savingBalance, '03-20-2020');
         <div class="wrapper">
             
             <div class="account">
-              
+              <div>
+                <?= $checking->getAccountDetails(); ?>
+
+              </div>
                     
                     <div class="accountInner">
                         <input type='hidden' name="checkingBalance" value="<?=$checking->getBalance();?>" />
@@ -92,6 +105,11 @@ $savings = new SavingsAccount('S123', $savingBalance, '03-20-2020');
             </div>
 
             <div class="account">
+
+            <div>
+                <?= $savings->getAccountDetails(); ?>
+
+              </div>
                
                     
                     <div class="accountInner">

@@ -2,20 +2,22 @@
 
 require_once "./account.php";
  
-class SavingsAccount extends Account 
+class SavingsAccount extends Account
 {
+
+	const OVERDRAW_LIMIT = 0;
 
 	public function withdrawal($amount) 
 	{
 		
-		const OVERDRAW_LIMIT = 0;
+
 		if($this ->balance - $amount > self::OVERDRAW_LIMIT){
-			return $this ->balance  - $amount; 
+			return $this ->balance -= $amount;   
 
 		}
 		else 
 		{
-			echo "Overdrafted! Account has hit 0...Your Broke hahahaha"
+			echo "Overdrafted! Account has hit 0...Your Broke hahahaha";
 		}
 	} //end withdrawal
 

@@ -24,7 +24,7 @@ abstract class Account
 	
 	public function deposit ($amount) 
 	{
-		$this ->balance = $amount + $balance; 
+		$this ->balance += $amount; 
 		return $this ->balance; 
 	} // end deposit
 
@@ -51,7 +51,7 @@ abstract class Account
 	// Display AccountID, Balance and StartDate in a nice format
 	protected function getAccountDetails()
 	{
-		echo "AccountID" . $this->accountId . "<br>" . "Balence" . $this->balance . "<br>". "Account Opened: " . $this->accountId . "<br>";
+		echo "AccountID" . $this->accountId . "<br>" . "Balance" . $this->balance . "<br>". "Account Opened: " . $this->accountId . "<br>";
 	} // end getAccountDetails
 	
 } // end account

@@ -9,12 +9,12 @@ class CheckingAccount extends Account
 	public function withdrawal($amount) 
 	{
 		if($this ->balance - $amount > self::OVERDRAW_LIMIT){
-			return $this ->balance  - $amount; 
+			return $this ->balance -= $amount; 
 
 		}
 		else 
 		{
-			echo "Overdrafted! Exceeds -200! "
+			echo "Overdrafted! Exceeds -200! ";
 		}
 	} // end withdrawal
 
@@ -32,11 +32,11 @@ class CheckingAccount extends Account
 // The code below runs everytime this class loads and 
 // should be commented out after testing.
 
-$checking = new CheckingAccount ('C123', 1000, '12-20-2019');
-$checking->withdrawal(200);
-$checking->deposit(500);
+// $checking = new CheckingAccount ('C123', 1000, '12-20-2019');
+// $checking->withdrawal(200);
+// $checking->deposit(500);
 
-echo $checking->getAccountDetails();
-echo $checking->getStartDate();
+// echo $checking->getAccountDetails();
+// echo $checking->getStartDate();
     
 ?>
