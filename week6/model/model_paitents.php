@@ -26,7 +26,7 @@
     function addPaitient($patientFirstName,$patientLastName,$patientMarried, $patientBirthDate){
         global $db; 
         $res = "Not yet!"; 
-        $con = $db->prepare("INSERT INTO paitients SET patientFirstName = :patientFirstName, patientLastName = :patientLastName, patientMarried = :patientMarried patientBirthDate =:patientBirthDate "); 
+        $con = $db->prepare("INSERT INTO patients SET patientFirstName = :patientFirstName, patientLastName = :patientLastName, patientMarried = :patientMarried, patientBirthDate =:patientBirthDate "); 
 
         $binding = array( 
             ":patientFirstName" => $patientFirstName, 
@@ -38,6 +38,6 @@
         if ($con ->execute($binding) && $con->rowCount() > 0){
             $res = 'Data Added'; 
         }
-        return ($results); 
+        return ($res); 
 
     }
