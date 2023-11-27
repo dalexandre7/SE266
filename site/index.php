@@ -12,6 +12,7 @@
     <li><a href="../week1/fizzBuzz/index.php">Fizz Buzz</a></li>
     <li><a href="../week3/ATM Starter Code/atm_starter.php">Week 3</a></li>
     <li><a href="../week6/viewPaitients.php">Week 4</a></li>
+    <li><a href="../week6/viewPaitients.php">Week 5</a></li>
   </ul>
   <ul>
     <li><a href="../week1/index.php">PHP HELP!</a></li>
