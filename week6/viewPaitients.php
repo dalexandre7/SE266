@@ -1,7 +1,14 @@
 <?php
         
         include __DIR__ . '\model\model_paitents.php';
+
+        if(isset($_POST['deletePaitient'])){
+            $id = filter_input(INPUT_POST, 'paitientId');
+            deletePatient($id);
+        }
+
         $paitents = getPatients();
+        
         
         
         ?>
@@ -41,12 +48,23 @@
             <tbody>
 
             <?php foreach ($paitents as $row): ?> 
+
+
                 <tr> 
+                    <td>
+                        <!-- FORM FOR DELETE FUNCTIONALITY -->
+                        <form action='viewPaitients.php' method='post'>
+                            <input type="hidden" name="paitientId" value="<?= $row['id'];?>"/>
+                            <input class="" type="submit" name="deletePaitient" value="Delete" />
+                            <?= $row['id']; ?>
+                        </form>
+                    </td>
                     <td><?php echo $row['id']; ?></td>
                     <td><?php echo $row['patientFirstName']; ?></td>
                     <td><?php echo $row['patientLastName']; ?></td>
                     <td><?php echo $row['patientMarried']; ?></td>
                     <td><?php echo $row['patientBirthDate']; ?></td>
+                    <td><a href="editPaitients.php?action=Update&paitientId=<?= $row['id']; ?>">Edit</a></td>
                 </tr>
             
                 <?php endforeach; ?> 

@@ -54,7 +54,7 @@
                     <td>
                         <!-- FORM FOR DELETE FUNCTIONALITY -->
                         <form action='view_teams.php' method='post'>
-                            <input type="hidden" name="teamId" value="<?= $t['id'];?>"/>
+                            <input type="hidden" name="teamId" value="<?= $row['id'];?>"/>
                             <input class="" type="submit" name="deleteTeam" value="Delete" />
                             <?= $t['id']; ?>
                         </form>
