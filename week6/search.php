@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['user'])){
+    header('Location: restricted.php');
+}
+
+?>
+
+<?php
         
         include __DIR__ . '\model\model_paitents.php';
 
@@ -31,8 +40,47 @@
         
             <h1>Paitients</h1>
                   
-            <a href="addPaitient.php">Add Paitient</a>
-            <a href="search.php">Search for Patient</a> 
+            <a href="viewPaitients.php">View All Paitients</a>
+            <?php
+        
+
+        if (isset($_POST['search'])) {
+            $patientFirstName = filter_input(INPUT_POST, 'patientFirstName');
+            $patientLastName = filter_input(INPUT_POST, 'patientLastName');
+        }else{
+            $patientFirstName = '';
+            $patientLastName = '';
+        }
+
+
+        $paitents = searchPaitients($patientFirstName, $patientLastName);
+        
+    ?>
+
+    <form method="POST" name="search_patients">
+        <div class="wrapper">
+            <div class="label">
+                <label>Paitient First Name:</label>
+            </div>
+            <div>
+                <input type="text" name="patientFirstName" value="<?= $patientFirstName; ?>" />
+            </div>
+            <div class="label">
+                <label>Paitient Last Name:</label>
+            </div>
+            <div>
+                <input type="text" name="patientLastName" value="<?=  $patientLastName; ?>" />
+            </div>
+
+            <div>
+                &nbsp;
+            </div>
+            <div>
+                <input type="submit" name="search" value="Search" />
+            </div>
+           
+        </div>
+    </form>
 
        
         <table class="table table-striped">
@@ -42,6 +90,7 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Married?</th>
+                    
                     <th>Birthdate</th> 
                 <tr> 
             <thead>
@@ -84,3 +133,4 @@
     
 </body>
 </html>
+

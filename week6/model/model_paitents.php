@@ -2,6 +2,51 @@
 
     include (__DIR__ . '\db.php'); 
 
+    function login($user, $pass){
+        global $db;
+        
+        $result = [];
+        $stmt = $db->prepare("SELECT * FROM users WHERE userName=:user AND userPassword=sha1(:pass)");
+        $stmt->bindValue(':user', $user);
+        $stmt->bindValue(':pass', $pass);
+       
+        if ( $stmt->execute() && $stmt->rowCount() > 0 ) {
+             $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                        
+         }
+         
+         return ($result);
+    }
+    function searchPaitients ($patientFirstName, $patientLastName) {
+        global $db;
+        $binds = array();
+    
+        $sql =  "SELECT * FROM  patients WHERE 0=0";
+
+        if ($patientFirstName != "") {
+            $sql .= " AND patientFirstName LIKE :patientFirstName";
+            $binds['patientFirstName'] = '%'.$patientFirstName.'%';
+        }
+    
+        if ($patientLastName != "") {
+            $sql .= " AND patientLastName LIKE :patientLastName";
+            $binds['patientLastName'] = '%'.$patientLastName.'%';
+        }
+    
+        $sql .= " ORDER BY patientFirstName";
+
+        $results = array();
+
+        $stmt = $db->prepare($sql);
+
+        if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+             
+        return ($results);
+    }
+
+
     function isPostRequest() {
         return ( filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST' );
     }
