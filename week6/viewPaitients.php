@@ -3,7 +3,7 @@
         include __DIR__ . '\model\model_paitents.php';
 
         if(isset($_POST['deletePaitient'])){
-            $id = filter_input(INPUT_POST, 'paitientId');
+            $id = filter_input(INPUT_POST, 'projectId');
             deletePatient($id);
         }
 

@@ -17,23 +17,23 @@
          
          return ($result);
     }
-    function searchPaitients ($patientFirstName, $patientLastName) {
+    function searchContacts ($firstName, $lastName) {
         global $db;
         $binds = array();
     
-        $sql =  "SELECT * FROM  patients WHERE 0=0";
+        $sql =  "SELECT * FROM  contacts WHERE 0=0";
 
-        if ($patientFirstName != "") {
-            $sql .= " AND patientFirstName LIKE :patientFirstName";
-            $binds['patientFirstName'] = '%'.$patientFirstName.'%';
+        if ($firstName != "") {
+            $sql .= " AND firstName LIKE :firstName";
+            $binds['firstName'] = '%'.$firstName.'%';
         }
     
-        if ($patientLastName != "") {
-            $sql .= " AND patientLastName LIKE :patientLastName";
-            $binds['patientLastName'] = '%'.$patientLastName.'%';
+        if ($lastName != "") {
+            $sql .= " AND lastName LIKE :lastName";
+            $binds['lastName'] = '%'.$lastName.'%';
         }
     
-        $sql .= " ORDER BY patientFirstName";
+        $sql .= " ORDER BY firstName";
 
         $results = array();
 
@@ -51,13 +51,13 @@
         return ( filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST' );
     }
 
-    function getPatients() {
+    function getContacts() {
 
         global $db; 
 
         $res = []; 
 
-        $con = $db->prepare("SELECT id, patientFirstName, patientLastName,patientMarried,patientBirthDate FROM patients"); 
+        $con = $db->prepare("SELECT id, firstName, lastName, projDesc, readStatus FROM contacts"); 
 
         if ($con->execute() && $con->rowCount() > 0)
         {
@@ -67,13 +67,13 @@
             return($res); 
 
     }
-    function getPatient($id) {
+    function getContact($id) {
 
         global $db; 
 
         $result = []; 
 
-        $con = $db->prepare("SELECT id, patientFirstName, patientLastName,patientMarried,patientBirthDate FROM patients WHERE id=:id"); 
+        $con = $db->prepare("SELECT id, firstName, lastName, projDesc, readStatus FROM contacts WHERE id=:id"); 
         $con->bindValue(':id', $id); 
 
         if ($con->execute() && $con->rowCount() > 0)
@@ -85,16 +85,16 @@
 
     }
 
-    function addPaitient($patientFirstName,$patientLastName,$patientMarried, $patientBirthDate){
+    function addContact($firstName,$lastName,$projDesc,$readStaus){
         global $db; 
         $res = "Not yet!"; 
-        $con = $db->prepare("INSERT INTO patients SET patientFirstName = :patientFirstName, patientLastName = :patientLastName, patientMarried = :patientMarried, patientBirthDate =:patientBirthDate "); 
+        $con = $db->prepare("INSERT INTO contacts SET firstName = :firstName, lastName = :lastName, projDesc = :projDesc, readStatus =:readStatus"); 
 
         $binding = array( 
-            ":patientFirstName" => $patientFirstName, 
-            ":patientLastName" => $patientLastName,
-            ":patientMarried" => $patientMarried,
-            ":patientBirthDate" => $patientBirthDate
+            ":firstName" => $firstName, 
+            ":lastName" => $lastName,
+            ":projDesc" => $projDesc,
+            ":readStatus" => $readStatus
         ); 
 
         if ($con ->execute($binding) && $con->rowCount() > 0){
@@ -103,16 +103,13 @@
         return ($res); 
 
     }
-    function updatePaitient($patientFirstName,$patientLastName,$patientMarried, $patientBirthDate){
+    function updateContact($id, $readStatus){
         global $db; 
         $res = "";
-        $sql = "UPDATE patients SET patientFirstName = :patientFirstName, patientLastName = :patientLastName, patientMarried = :patientMarried, patientBirthDate =:patientBirthDate WHERE id=:id"; 
+        $sql ="UPDATE contacts SET readStatus =:readStatus WHERE id=:id"; 
         $stmt = $db->prepare($sql); 
         $stmt->bindValue(':id', $id);
-        $stmt->bindValue(':patientFirstName', $patientFirstName);
-        $stmt->bindValue(':patientLastName', $patientLastName);
-        $stmt->bindValue(':patientMarried', $patientMarried);
-        $stmt->bindValue(':patientBirthDate', $patientBirthDate);
+        $stmt->bindValue(':readStatus', $readStatus);
 
         if ($stmt->execute() && $stmt->rowCount() > 0) {
             $results = 'Data Updated';
@@ -121,11 +118,11 @@
         return ($res);
 
     }
-    function deletePatient ($id) {
+    function deleteContact ($id) {
         global $db;
         
         $results = "Data was not deleted";
-        $stmt = $db->prepare("DELETE FROM patients WHERE id=:id");
+        $stmt = $db->prepare("DELETE FROM contacts WHERE id=:id");
         
         $stmt->bindValue(':id', $id);
             

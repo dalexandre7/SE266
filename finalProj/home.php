@@ -113,7 +113,7 @@
                         function(button){ <br>
                         return projects;}
                     </div>
-                    <button type="button" class="btn" id="but">Run</button>
+                    <a type="button" class="btn" id="but" href= "https://github.com/dalexandre7">Run</a>
                 </div> 
             </div>
             <div id="funcOne"> 
@@ -123,7 +123,7 @@
                             return Login;}
                     </div>
                     <br>
-                    <button type="button" class="btn" id="but" >Run</button> 
+                    <a type="button" class="btn" id="but" href = "login.php">Run</a> 
                 </div>
             </div>          
         </div>
@@ -136,7 +136,7 @@
                         return Contact Me;}
                 </div>
                 <br>
-                <button type="button" class="btn" id="but" >Run</button> 
+                <a type="button" class="btn" id="but" href = "connect.php">Run</a>
             </div>
         </div>
         <br>
